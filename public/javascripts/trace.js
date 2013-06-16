@@ -1,9 +1,4 @@
-var socket = io.connect();
-socket.on('news', function (data) {
-	console.log(data);
-	socket.emit('my other event', { my: 'data' });
-});
-
+var socket = io.connect('/trace');
 var sendPoint, captureScreen, sendImage;
 
 var Throttle = function Throttle(minInterval) {
@@ -65,6 +60,19 @@ $(document).on('mousemove', function (e) {
 
 });
 
+$(document).on('click', function (e) {
+
+	//mousepoint取得
+	var point = {};
+
+	//スクロールしても変化して欲しくないのでpageX,pageYを使う
+	point.x = e.pageX;
+	point.y = e.pageY;
+
+	socket.emit('emit.click', point);
+
+});
+
 captureScreen = function captureScreen(){
 
 	html2canvas(document.body, {
@@ -88,7 +96,7 @@ sendImage = function sendImage(binay){
 }
 
 //画面キャプチャ
-setInterval(captureScreen,5000);
+setInterval(captureScreen, 10000);
 
 socket.on('put.image', function (data) {
 	console.log(data);

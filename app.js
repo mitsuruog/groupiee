@@ -3,11 +3,12 @@
  */
 
 var express = require('express'),
-	sio = require('socket.io'),
 	routes = require('./routes'),
 	ejs = require('ejs'),
 	trace = require('./routes/trace'),
 	play = require('./routes/play'),
+	socket = require('./lib/socket'),
+	db = require('./lib/db'),
 	http = require('http'),
 	path = require('path');
 
@@ -57,24 +58,12 @@ var server = http.createServer(app).listen(app.get('port'), process.env.IP, func
 	console.log('Express server listening on port ' + app.get('port'));
 });
 
-//socket
-var io = sio.listen(server);
-app.set('io', io);
+//socket.io
+app.set('io', socket.init(server));
+socket.traceStart();
+socket.playStart();
 
-io.sockets.on('connection', function (socket) {
-	socket.emit('news', { hello: 'world' });
-	socket.on('my other event', function (data) {
-		console.log(data);
-	});
+//db
+app.set('db', db.init());
 
-	socket.on('emit.mousepoint', function(data){
-		console.log(data);
-	});
-
-	socket.on('emit.image', function(data){
-		console.log(data);
-		socket.emit('put.image', data);
-	});
-
-});
 
