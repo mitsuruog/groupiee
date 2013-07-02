@@ -2,14 +2,32 @@
 <html>
 <head>
 	<title></title>
+	<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		body {
+			padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+		}
+	</style>
+	<link href="../assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+	<link href="../assets/css/magic.min.css" rel="stylesheet">
+
+	<link href="/stylesheets/style.css" rel="stylesheet">
+
 </head>
 <body>
   <h1>trace</h1>
-	
-	<img src="">
+
+	<span class="box img-cloud magictime" data-test="puffIn"></span>
+	<span class="box img-fan magictime" data-test="puffOut"></span>
+	<span class="box img-configuration02 magictime" data-test="slideDown"></span>
+	<span class="box img-light magictime" data-test="slideUp"></span>
+	<span class="box img-tap magictime" data-test="slideRight"></span>
+	<span class="box img-unlock magictime" data-test="slideLeft"></span>
 
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/bootstrap.min.js"></script>
 	<script src="../assets/js/html2canvas.js"></script>
 	<script src="../javascripts/trace.js"></script>
 

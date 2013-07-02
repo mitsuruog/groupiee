@@ -1,4 +1,4 @@
-MyApp.Models.Play = Backbone.Model.extend({
+MyApp.Models.Session = Backbone.Model.extend({
 
 	set: function(attrs, options){
 		if (attrs.createTimestamp) {

@@ -12,7 +12,7 @@ MyApp.Views.PlayView = Backbone.View.extend({
 			el: this.$el.find('#left-container')
 		});
 
-		this.playList = new MyApp.Views.PlayListView({
+		this.playList = new MyApp.Views.SessionListView({
 			el: this.$el.find('#right-container')
 		});
 	}

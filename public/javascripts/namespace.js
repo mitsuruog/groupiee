@@ -3,5 +3,6 @@ MyApp = {
 	Collections: {},
 	Models: {},
 	App: {},
+	Utils: {},
 	socket: {}
 }

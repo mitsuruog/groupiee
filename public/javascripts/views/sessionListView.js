@@ -1,20 +1,20 @@
-MyApp.Views.PlayListView = Backbone.View.extend({
+MyApp.Views.SessionListView = Backbone.View.extend({
 
 	tmpl: _.template('' +
 		'<% _.each(playList, function(play){ %>' +
-		'<li data-playId="<%= play._id %>">' +
-		'<a href="#" class="playId"><%- play.sessionId %></a>' +
+		'<li data-sessionId="<%= play.sessionId %>">' +
+		'<a href="#" class="sessionId"><%- play.sessionId %></a>' +
 		'<span><%- play.createTimestamp%></span>' +
 		'</li>' +
 		'<% }); %>'),
 
 	events: {
-		'click a.playId ': 'getPlay'
+		'click a.sessionId ': 'getPlay'
 	},
 
 	initialize: function () {
 
-		this.collection = new MyApp.Collections.PlayList();
+		this.collection = new MyApp.Collections.SessionList();
 		this.collection.sync();
 
 		this.listenTo(this.collection, 'add', this.render);
@@ -34,9 +34,9 @@ MyApp.Views.PlayListView = Backbone.View.extend({
 		e.preventDefault();
 
 		var obj = {};
-		obj.playId = this.$el.find('li').data('playid');
+		obj.sessionId = $(e.currentTarget).closest('li').data('sessionid');
 
-		MyApp.events.trigger('play', obj);
+		MyApp.events.trigger('get.session', obj);
 
 	}
 

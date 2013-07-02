@@ -4,5 +4,46 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+span.box {
+  margin: 10px;
+}
+
+.img-cloud {
+  background: url('../images/cloud-outline.png');
+}
+
+.img-fan {
+  background: url('../images/fan.png');
+}
+
+.img-configuration02 {
+  background: url('../images/configuration02.png');
+}
+
+.img-light {
+  background: url('../images/light.png');
+}
+
+.img-tap {
+  background: url('../images/tap.png');
+}
+
+.img-unlock {
+  background: url('../images/unlock.png');
+}
+
+
+.box {
+  height: 32px;
+  width: 32px;
+  display: inline-block;
+  border: 1px #999 solid;
+  border-radius: 10px;
+  padding: 3px;
+  background-position-y: 2px;
+  background-position-x: 2px;
+  background-repeat: no-repeat;
 }

@@ -81,24 +81,62 @@ captureScreen = function captureScreen(){
 			sendImage(canvas.toDataURL());
 
 		},
-//		width: document.documentElement.clientWidth,
-//		height: document.documentElement.clientHeight
-		width: 200,
-		height: 300
+		width: document.documentElement.clientWidth,
+		height: document.documentElement.clientHeight
+//		width: 200,
+//		height: 300
 	});
 
 };
 
-sendImage = function sendImage(binay){
+sendImage = function sendImage(image){
 
-	socket.emit('emit.image', binay);
+	socket.emit('emit.image', image);
 
-}
+//	socket.emit('emit.image', {
+//		image: image,
+//		screen: {
+//			width: document.documentElement.clientWidth,
+//			height: document.documentElement.clientHeight
+//		}
+//	});
+
+};
 
 //画面キャプチャ
-setInterval(captureScreen, 10000);
+setInterval(captureScreen, 1000);
 
 socket.on('put.image', function (data) {
 	console.log(data);
 	$('img').attr('src', data);
 });
+
+
+/*
+ *
+ *
+ * デモ用
+ *
+ *
+ */
+
+function minidemo(x) {
+
+	var $box = $(this);
+	$box.addClass(x);
+
+	var wait = window.setTimeout( function(){
+
+		$box.removeClass(x)}, 1500 );
+
+}
+
+$(document).ready(function() {
+
+	$('span[data-test]').hover(function(){
+		var anim = $(this).attr('data-test');
+		minidemo.apply(this, [anim]);
+	});
+
+});
+

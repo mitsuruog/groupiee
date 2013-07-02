@@ -1,28 +1,42 @@
 MyApp.Views.PlayerView = Backbone.View.extend({
 
 	tmpl: _.template('' +
-		'<canvas width="500px" height="500px"></canvas>' +
+		'<div id="canvas"></div>' +
 		''),
 
 	initialize: function(){
 
 		_.bindAll(this);
 
-		MyApp.events.on('play', this.getPlay);
+		this.render();
+
+		MyApp.events.on('get.session', this.getPlay);
+
+		this.collection = new MyApp.Collections.PlayList();
+
+		this.listenTo(this.collection, 'reset', this.play);
+
+		//MyApp.events.on('play', this.play);
 
 	},
 
 	getPlay: function(obj) {
 
-		this.model = new MyApp.Models.Player(obj);
-		this.listenTo(this.model, 'add', this.render);
-		this.model.sync();
+		this.collection.sync(obj);
 
 	},
 
 	render: function(){
 
 		this.$el.html(this.tmpl());
+
+	},
+
+	play: function(){
+
+		var player = new MyApp.Utils.Player();
+
+		player.play(this.collection.toJSON());
 
 	}
 

@@ -1,6 +1,6 @@
 MyApp.Collections.PlayList = Backbone.Collection.extend({
 
-	model: MyApp.Models.Play,
+	model: MyApp.Models.PlayParts,
 
 	initialize: function() {
 
@@ -14,14 +14,15 @@ MyApp.Collections.PlayList = Backbone.Collection.extend({
 	addAll: function(playList){
 
 		console.log(playList);
-		this.add(playList);
+		this.reset(playList);
+
+		//MyApp.events.trigger('play');
 
 	},
 
-	sync: function(){
+	sync: function(obj){
 
-		this.socket.emit('playList');
+		this.socket.emit('playList', obj);
 
 	}
-
 });

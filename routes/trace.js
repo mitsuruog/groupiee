@@ -14,5 +14,5 @@ exports.index = function(req, res){
 		res.end(data);
 	});
 
-//  res.render('index', { title: '監視ページ' });
+//  res.render('index', { title: 'Trace' });
 };
